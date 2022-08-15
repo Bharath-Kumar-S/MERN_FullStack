@@ -4,24 +4,26 @@ import fs from "fs";
 import fsPromises from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url)
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const logEvents = async (message, logFileName) => {
-    const dateTime = format(new Date(), 'yyyyMMdd\thh:mm:ss');
-    const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
+  const dateTime = format(new Date(), "yyyyMMdd\thh:mm:ss");
+  const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
 
-    try{
-        if(!fs.existsSync(path.join(__dirname, '..', 'logs')))
-            await fsPromises.mkdir(path.join(__dirname, '..', 'logs'))
-        await fsPromises.appendFile(path.join(__dirname, '..', 'logs', logFileName), logItem)
-    }
-    catch(err){
-        console.log(err);
-    }
-} 
+  try {
+    if (!fs.existsSync(path.join(__dirname, "..", "logs")))
+      await fsPromises.mkdir(path.join(__dirname, "..", "logs"));
+    await fsPromises.appendFile(
+      path.join(__dirname, "..", "logs", logFileName),
+      logItem
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const logger = (req, res, next) => {
-    logEvents(`${req.method}\t${req.url}\t${req.headers.origin}`, 'reqlog.log')
-    next();
-}
+  logEvents(`${req.method}\t${req.url}\t${req.headers.origin}`, "reqlog.log");
+  next();
+};

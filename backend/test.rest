@@ -6,7 +6,28 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "userName": "Vijaya",
+    "userName": "Ramya_12",
     "password": "@Hpe1234",
     "roles": ["Employee"]
+}
+
+####
+
+PATCH http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "id": "62fa71cb3bc673eeb42463e0",
+    "userName": "Ramya BS",
+    "roles": ["Employee"],
+    "active": false
+}
+
+#####
+
+DELETE http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "id": "62fa71c33bc673eeb42463dc"
 }

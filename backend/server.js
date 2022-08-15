@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { allowedOrigins } from "./config/allowedOrigins.js";
 import { logger } from "./middleware/logger.js";
 import { logEvents } from "./middleware/logger.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 import userRouter from "./routes/userRoutes.js";
 
 dotenv.config();
@@ -27,6 +28,8 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(errorHandler);
 
 app.listen(PORT, async () => {
   try {
