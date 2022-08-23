@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Public from './components/Public';
+import Login from './features/users/Login';
+import Fecore from './components/Fecore';
+import Jobs from './features/core/Jobs';
+import Notes from './features/core/Notes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Public />} />
+        <Route path="login" element={<Login />} />
+      </Route>
+      <Route path="fecore" element={<Layout />}>
+        <Route index element={<Fecore />} />
+        <Route path="jobs" element={<Jobs />} />
+        <Route path="notes" element={<Notes />} />
+      </Route>
+    </Routes>
   );
 }
 
